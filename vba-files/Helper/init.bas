@@ -9,19 +9,35 @@ End Sub
 
 
 
-Public Sub AddNewData()
+Public Sub AddNewFormData()
+
+    Dim itemClient As String
+    Dim itemDate As Date
+    Dim itemAmount As Currency
+    Dim itemClientType As String 
+
+    
+    itemClient = Sheets("Form").Range("Client").Value
+    itemDate = Sheets("Form").Range("pDate").Value
+    itemAmount = Sheets("Form").Range("Amount").Value
+    itemClientType = Sheets("Form").Range("client_type").Value
+
+
     Sheets("Data").Activate 
     Range("A2").Select
+
 
     Do Until ActiveCell.Value = ""
         ActiveCell.Offset(1, 0).Select
     Loop
 
-    ActiveCell.Value = Sheets("Form").Range("Client").Value
-    ActiveCell.Offset(0, 1).Value = Sheets("Form").Range("pDate").Value
-    ActiveCell.Offset(0, 2).Value = Sheets("Form").Range("Amount").Value
 
-    Sheet1.Range("C17").Value = "Data Submitted Successfully. " & Now()
+    ActiveCell.Value = itemClient
+    ActiveCell.Offset(0, 1).Value = itemDate
+    ActiveCell.Offset(0, 2).Value = itemAmount
+    ActiveCell.Offset(0, 3).Value = itemClientType
+
+    Sheet1.Range("alert_info").Value = "Data Submitted Successfully. " & Now()
 
 
 
